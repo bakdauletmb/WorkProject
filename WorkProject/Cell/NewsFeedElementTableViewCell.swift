@@ -66,11 +66,8 @@ class NewsFeedElementTableViewCell: UITableViewCell {
     fileprivate func setContraints() {
    
         addSubview(backgorundImageView)
-        backgorundImageView.addSubview(releaseDate)
         addSubview(ScoreView)
-        
-       
-    
+        backgorundImageView.addSubview(releaseDate)
         
         backgorundImageView.topAnchor.constraint(equalTo: topAnchor,constant: 10).isActive = true
         backgorundImageView.leftAnchor.constraint(equalTo: leftAnchor,constant: 10).isActive = true
