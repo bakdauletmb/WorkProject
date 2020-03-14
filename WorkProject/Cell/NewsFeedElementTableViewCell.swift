@@ -21,6 +21,7 @@ class NewsFeedElementTableViewCell: UITableViewCell {
     return imageView
     }()
     
+ 
     //MARK: white space for raiting
     lazy var ScoreView : UIView = {
         var view = UIView()
@@ -67,11 +68,18 @@ class NewsFeedElementTableViewCell: UITableViewCell {
         addSubview(backgorundImageView)
         backgorundImageView.addSubview(releaseDate)
         addSubview(ScoreView)
+        
+       
+    
+        
         backgorundImageView.topAnchor.constraint(equalTo: topAnchor,constant: 10).isActive = true
         backgorundImageView.leftAnchor.constraint(equalTo: leftAnchor,constant: 10).isActive = true
         backgorundImageView.rightAnchor.constraint(equalTo: rightAnchor,constant: -10).isActive = true
         backgorundImageView.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -10).isActive = true
         
+        
+      
+            
         releaseDate.bottomAnchor.constraint(equalTo: backgorundImageView.bottomAnchor, constant: 0).isActive = true
         releaseDate.leftAnchor.constraint(equalTo: leftAnchor, constant: 13).isActive = true
 
@@ -80,6 +88,7 @@ class NewsFeedElementTableViewCell: UITableViewCell {
         
      }
      
+    
 }
 
 

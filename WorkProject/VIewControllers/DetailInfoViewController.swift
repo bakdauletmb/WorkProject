@@ -47,6 +47,7 @@ class DetailInfoViewController: UIViewController {
         didSet{
             overview.text = data?.overview
             raitingString.text = data?.vote_average?.description
+            releaseDate.text = data?.release_date
             nameOfMovie.text = data?.title
             if let name = data?.poster_path{
                 let url = URL(string: "http://image.tmdb.org/t/p/w342/\(name)")
@@ -91,7 +92,7 @@ class DetailInfoViewController: UIViewController {
         var releaseData = UILabel()
         releaseData.font = UIFont.boldSystemFont(ofSize: 20)
         releaseData.textColor = .textBlue
-        releaseData.text = "22.222.22"
+        
         releaseData.translatesAutoresizingMaskIntoConstraints = false
     return releaseData
     }()

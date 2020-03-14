@@ -18,7 +18,8 @@ class ViewController: UIViewController, UIScrollViewDelegate{
     fileprivate var myTableView = UITableView()
     let identify = "Cell"
     var dataFilms = [FilmJSON]()
-    
+    var newDataFilms = [FilmJSON]()
+    var indexPage = 1
     override func viewDidLoad() {
         super.viewDidLoad()
         createTable()
@@ -50,7 +51,7 @@ class ViewController: UIViewController, UIScrollViewDelegate{
     func parse()
     {
         let APIKey = "f8630407734038c40bff4871588d2340"
-            guard let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(APIKey)") else {return}
+            guard let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(APIKey)&language=en-US&page=\(indexPage)") else {return}
                 if let data = try? Data(contentsOf: url){
                     let decoder = JSONDecoder()
                         if let jsonComeBack = try? decoder.decode(DataFilm.self, from: data){
@@ -64,6 +65,7 @@ class ViewController: UIViewController, UIScrollViewDelegate{
         
         //MARK: called when refreshing the page
     @objc func handleRefresh(){
+        indexPage = 1
         parse()
         myTableView.reloadData()
         refresh.endRefreshing()
@@ -86,11 +88,24 @@ class ViewController: UIViewController, UIScrollViewDelegate{
                 }
             }
         }
-    // MARK: since there is no paginating support, i just reload previos data
+    // MARK: scroll till the end
   fileprivate func beginto(){
             fetch = true
-            dataFilms += dataFilms
+        if indexPage < 999{
+            indexPage += 1 }
+              let APIKey = "f8630407734038c40bff4871588d2340"
+                      guard let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(APIKey)&language=en-US&page=\(indexPage)") else {return}
+                          if let data = try? Data(contentsOf: url){
+                              let decoder = JSONDecoder()
+                                  if let jsonComeBack = try? decoder.decode(DataFilm.self, from: data){
+                                      newDataFilms = jsonComeBack.results
+                                      myTableView.reloadData()
+                                  }
+                               }
+            dataFilms+=newDataFilms
             self.myTableView.reloadData()
+    
+    
             fetch = false
         }
     }
@@ -115,7 +130,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         let bgColorView = UIView()
             bgColorView.backgroundColor = UIColor.clear
             cell.selectedBackgroundView = bgColorView
-          
+       
         //MARK: background color of cell
         cell.backgroundColor = .deepBlue
         //MARK: passing value from JSON to view of Cell
@@ -124,12 +139,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         cell.scoreLabel.text = (String(describing:dataFilms[indexPath.row].vote_average!))
         
         //MARK: getting URL
-        let pathToimage = dataFilms[indexPath.row].poster_path!
+        if let pathToimage = dataFilms[indexPath.row].poster_path{
+        
             guard let url = URL(string:  "https://image.tmdb.org/t/p/w300/\(String(describing: pathToimage))")
                 else { return cell}
                     //MARK: downloads the image from URL and sets it to cell's image view
                     //MARK: caching happens here, within SDWebImageLibrary
-                    cell.backgorundImageView.sd_setImage(with: url, completed: nil)
+            cell.backgorundImageView.sd_setImage(with: url, completed: nil)}
+        else {cell.backgorundImageView.sd_setImage(with: URL(string: "https://i.pinimg.com/474x/96/a0/0d/96a00d42b0ff8f80b7cdf2926a211e47.jpg"), completed: nil)}
         return cell
          }
       
