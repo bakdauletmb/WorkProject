@@ -28,7 +28,7 @@ class DetailInfoViewController: UIViewController {
         var imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleToFill
-        imageView.addSubview(raiting)
+        imageView.addSubview(raitingString)
         return imageView
         
     }()
@@ -61,7 +61,6 @@ class DetailInfoViewController: UIViewController {
     
     //MARK: description of movie
     fileprivate var overview: UILabel = {
-        
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
@@ -70,19 +69,15 @@ class DetailInfoViewController: UIViewController {
         label.numberOfLines = 9
     return label
     }()
-    //MARK: raiting view
-    fileprivate lazy var raiting: UIView = {
-        var raiting =  UIView()
-        raiting.translatesAutoresizingMaskIntoConstraints = false
-        raiting.backgroundColor = .white
-        raiting.layer.cornerRadius = 35
-        raiting.addSubview(raitingString)
-    return raiting
-     }()
+
     //MARK: raiting value
     fileprivate var raitingString:UILabel = {
         var raitingString = UILabel()
-        raitingString.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 24)
+        raitingString.clipsToBounds = true
+        raitingString.backgroundColor = .white
+        raitingString.textAlignment = .center
+        raitingString.layer.cornerRadius = 35
+        raitingString.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 26)
         raitingString.textColor = .black
         raitingString.translatesAutoresizingMaskIntoConstraints = false
     return raitingString
@@ -139,8 +134,6 @@ class DetailInfoViewController: UIViewController {
         nameOfMovie.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         nameOfMovie.widthAnchor.constraint(equalToConstant: 220).isActive = true
         
-        
-        
         //MARK:  POSTER
         imageView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant:  40).isActive = true
         imageView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
@@ -154,16 +147,11 @@ class DetailInfoViewController: UIViewController {
         
         
         //MARK: RAITING VIEW
-        raiting.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 30 ).isActive = true
-        raiting.leftAnchor.constraint(equalTo: imageView.leftAnchor, constant: 20).isActive = true
-        raiting.heightAnchor.constraint(equalToConstant: 70).isActive = true
-        raiting.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        raitingString.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 30 ).isActive = true
+        raitingString.leftAnchor.constraint(equalTo: imageView.leftAnchor, constant: 20).isActive = true
+        raitingString.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        raitingString.widthAnchor.constraint(equalToConstant: 70).isActive = true
         
-        //MARK: RAITING VALUE
-        raitingString.centerYAnchor.constraint(equalTo: raiting.centerYAnchor).isActive = true
-        raitingString.centerXAnchor.constraint(equalTo: raiting.centerXAnchor,constant: 10).isActive = true
-        raitingString.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        raitingString.widthAnchor.constraint(equalToConstant: 50).isActive = true
     }
 
     
