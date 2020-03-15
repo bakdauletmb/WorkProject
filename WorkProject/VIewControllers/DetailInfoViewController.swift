@@ -14,7 +14,7 @@ import UIKit
 class DetailInfoViewController: UIViewController {
     
     //MARK: scroll view
-    var scrollView: UIScrollView = {
+   fileprivate var scrollView: UIScrollView = {
         var scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.contentSize.height = 1000
@@ -23,7 +23,7 @@ class DetailInfoViewController: UIViewController {
     
     
     //MARK: Moview poster
-    lazy var imageView : UIImageView =
+    fileprivate lazy var imageView : UIImageView =
     {
         var imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -32,7 +32,7 @@ class DetailInfoViewController: UIViewController {
         return imageView
         
     }()
-    var nameOfMovie : UILabel = {
+    fileprivate var nameOfMovie : UILabel = {
         var nameOfMovie = UILabel()
         
         nameOfMovie.textColor = .white
@@ -42,7 +42,7 @@ class DetailInfoViewController: UIViewController {
         return nameOfMovie
     }()
     //MARK: data from JSON
-    var data:FilmJSON?
+     var data:FilmJSON?
     {
         didSet{
             overview.text = data?.overview
@@ -60,7 +60,7 @@ class DetailInfoViewController: UIViewController {
     }
     
     //MARK: description of movie
-    var overview: UILabel = {
+    fileprivate var overview: UILabel = {
         
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -71,7 +71,7 @@ class DetailInfoViewController: UIViewController {
     return label
     }()
     //MARK: raiting view
-    lazy var raiting: UIView = {
+    fileprivate lazy var raiting: UIView = {
         var raiting =  UIView()
         raiting.translatesAutoresizingMaskIntoConstraints = false
         raiting.backgroundColor = .white
@@ -80,7 +80,7 @@ class DetailInfoViewController: UIViewController {
     return raiting
      }()
     //MARK: raiting value
-    var raitingString:UILabel = {
+    fileprivate var raitingString:UILabel = {
         var raitingString = UILabel()
         raitingString.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 24)
         raitingString.textColor = .black
@@ -88,7 +88,7 @@ class DetailInfoViewController: UIViewController {
     return raitingString
     }()
     //MARK: release date
-    var releaseDate:UILabel = {
+    fileprivate var releaseDate:UILabel = {
         var releaseData = UILabel()
         releaseData.font = UIFont.boldSystemFont(ofSize: 20)
         releaseData.textColor = .textBlue

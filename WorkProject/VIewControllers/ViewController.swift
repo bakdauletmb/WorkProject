@@ -16,10 +16,10 @@ class ViewController: UIViewController, UIScrollViewDelegate{
     fileprivate var refresh = UIRefreshControl() //MARK: update data when scrolling down
     fileprivate var fetch = false
     fileprivate var myTableView = UITableView()
-    let identify = "Cell"
-    var dataFilms = [FilmJSON]()
-    var newDataFilms = [FilmJSON]()
-    var indexPage = 1
+    fileprivate let identify = "Cell"
+    fileprivate var dataFilms = [FilmJSON]()
+    fileprivate var newDataFilms = [FilmJSON]()
+    fileprivate var indexPage = 1
     override func viewDidLoad() {
         super.viewDidLoad()
         createTable()
@@ -63,8 +63,8 @@ class ViewController: UIViewController, UIScrollViewDelegate{
         
        
         
-        //MARK: called when refreshing the page
-    @objc func handleRefresh(){
+    //MARK: called when refreshing the page
+     @objc func handleRefresh(){
         indexPage = 1
         parse()
         myTableView.reloadData()
@@ -90,7 +90,7 @@ class ViewController: UIViewController, UIScrollViewDelegate{
         }
     // MARK: scroll till the end
   fileprivate func beginto(){
-            fetch = true
+        fetch = true
         if indexPage < 999{
             indexPage += 1 }
               let APIKey = "f8630407734038c40bff4871588d2340"

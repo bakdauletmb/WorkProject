@@ -22,22 +22,16 @@ class NewsFeedElementTableViewCell: UITableViewCell {
     }()
     
  
-    //MARK: white space for raiting
-    lazy var ScoreView : UIView = {
-        var view = UIView()
-        view.frame = CGRect(x: 40, y: 40, width: 80, height: 80)
-        view.layer.cornerRadius = 40
-        view.backgroundColor = .white
-        view.addSubview(scoreLabel)
-        return view
-    }()
-    
 
     //MARK: Raiting
     lazy var scoreLabel : UILabel = {
-        var label = UILabel(frame: CGRect(x: 20, y: 20, width: 50, height: 50))
+        var label = UILabel(frame: CGRect(x: 30, y: 30, width: 60, height: 60))
         label.textColor = .black
+        label.textAlignment = .center
         label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 30)
+        label.backgroundColor = .white
+        label.clipsToBounds = true
+        label.layer.cornerRadius = 30
         return label
     }()
     //MARK: release date
@@ -66,7 +60,7 @@ class NewsFeedElementTableViewCell: UITableViewCell {
     fileprivate func setContraints() {
    
         addSubview(backgorundImageView)
-        addSubview(ScoreView)
+        addSubview(scoreLabel)
         backgorundImageView.addSubview(releaseDate)
         
         backgorundImageView.topAnchor.constraint(equalTo: topAnchor,constant: 10).isActive = true
@@ -74,9 +68,6 @@ class NewsFeedElementTableViewCell: UITableViewCell {
         backgorundImageView.rightAnchor.constraint(equalTo: rightAnchor,constant: -10).isActive = true
         backgorundImageView.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -10).isActive = true
         
-        
-      
-            
         releaseDate.bottomAnchor.constraint(equalTo: backgorundImageView.bottomAnchor, constant: 0).isActive = true
         releaseDate.leftAnchor.constraint(equalTo: leftAnchor, constant: 13).isActive = true
 
